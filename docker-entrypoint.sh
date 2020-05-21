@@ -41,6 +41,11 @@ if [ ! -f /etc/nginx/certs/local.crt ]; then
 		-subj "/C=US/ST=Oregon/L=Portland/O=Docker Proxy/OU=None/CN=*.local"
 fi
 
+if [ ! -f /etc/nginx/certs/nip.io.crt ]; then
+	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/certs/nip.io.key -out /etc/nginx/certs/nip.io.crt \
+		-subj "/C=US/ST=Oregon/L=Portland/O=Docker Proxy/OU=None/CN=*.nip.io"
+fi
+
 # If the user has run the default command and the socket doesn't exist, fail
 if [ "$socketMissing" = 1 -a "$1" = forego -a "$2" = start -a "$3" = '-r' ]; then
 	exit 1
