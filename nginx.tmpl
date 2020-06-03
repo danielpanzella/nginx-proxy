@@ -17,7 +17,7 @@
 	{{ else if .Network }}
 		# {{ .Container.Name }}
 		{{ if .Network.IP }}
-			server {{ .Network.IP }} down;
+			server {{ .Network.IP }};
 		{{ else }}
 			server 127.0.0.1 down;
 		{{ end }}
